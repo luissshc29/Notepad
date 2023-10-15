@@ -33,9 +33,22 @@ export default function GlobalStyles() {
             }
             body {
                 line-height: 1;
+                min-width: 100vw;
+                min-height: 100vh;
+                overflow-x: hidden;
+                background-color: #0d0d0d;
             }
             ol, ul {
                 list-style: none;
+            }
+
+            ::-webkit-scrollbar {
+                width: 3px;
+                background-color: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                border-radius: 24px;
+                background-color: #0d0d0d;
             }
 
             `
