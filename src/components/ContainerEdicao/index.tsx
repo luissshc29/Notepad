@@ -106,6 +106,8 @@ export default function ContainerEdicao() {
                         w-1/2
                         self-center
                         rounded-xl
+                        text-white
+                        font-bold
                         bg-orange-500
                         hover:bg-orange-600
                         active:shadow-inner

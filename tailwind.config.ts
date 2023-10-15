@@ -11,6 +11,8 @@ module.exports = {
         container: {
             center: true,
             padding: "2rem",
+        },
+        extend: {
             screens: {
                 'sm': '320px',
                 // => @media (min-width: 320px) { ... }
@@ -27,8 +29,9 @@ module.exports = {
                 '2xl': '1536px',
                 // => @media (min-width: 1536px) { ... }
             },
-        },
-        extend: {
+            gridTemplateColumns: {
+                '45-55': '45% 55%'
+            },
             keyFrames: {
                 'show-up': {
                     '0%': {opacity: 0},
