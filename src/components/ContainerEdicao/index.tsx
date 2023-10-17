@@ -1,34 +1,33 @@
-import Botao from 'components/Botao'
-import { Button } from 'components/ui/button'
-import { Card, CardTitle, CardDescription, CardHeader, CardFooter, CardContent } from 'components/ui/card'
-import { Input } from 'components/ui/input'
-import { Textarea } from 'components/ui/textarea'
-import React, { useEffect, useState } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { IoMdAddCircleOutline } from 'react-icons/io'
-import { useDispatch, useSelector } from 'react-redux'
-import { editaNota, removeEdicaoNota } from 'store/reducers/edicao'
-import { adicionaNota } from 'store/reducers/notas'
-import { v4 as uuid } from 'uuid'
+import Botao from "components/Botao";
+import { Card, CardTitle, CardHeader, CardContent } from "components/ui/card";
+import { Input } from "components/ui/input";
+import { Textarea } from "components/ui/textarea";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { editaNota, removeEdicaoNota } from "store/reducers/edicao";
+import { adicionaNota } from "store/reducers/notas";
+import { v4 as uuid } from "uuid";
 
 export default function ContainerEdicao() {
+  const { handleSubmit, register, reset } = useForm();
+  const dispatch = useDispatch();
 
-    const { handleSubmit, register, reset } = useForm()
-    const dispatch = useDispatch()
+  const { notaEdicao } = useSelector((state: any) => state);
 
-    const { notaEdicao } = useSelector((state: any) => state)
-
-    const onSubmit = (data: any) => {  
-        const editando = notaEdicao[0].id
-        editando ? dispatch(adicionaNota({...data, id: notaEdicao[0].id})) : dispatch(adicionaNota({...data, id: uuid()}))
-        dispatch(removeEdicaoNota())
-        reset()
-    }
+  const onSubmit = (data: any) => {
+    const editando = notaEdicao[0].id;
+    !editando
+      ? dispatch(adicionaNota({ ...data, id: uuid() }))
+      : dispatch(adicionaNota({ ...data, id: notaEdicao[0].id }));
+    reset();
+    dispatch(removeEdicaoNota());
+  };
 
   return (
-    <Card 
-        className={`
-            lg:w-3/5
+    <Card
+      className={`
             w-full 
             flex 
             flex-col 
@@ -39,48 +38,62 @@ export default function ContainerEdicao() {
             shadow-inner
             shadow-black
             font-sans
-            h-3/4
+            h-[60vh]
         `}
     >
-        <CardHeader className='w-full text-center h-1/5'>
-            <CardTitle className='my-auto'>Área de trabalho</CardTitle> 
-        </CardHeader>
-        <CardContent className='p-4 w-4/5 h-full flex flex-col items-center justify-center animate-show-up duration-300'>  
-
-            {
-                notaEdicao.length === 0 ?
-                <div 
-                    className='
+      <CardHeader className="w-full text-left h-1/5 p-6">
+        <CardTitle className="my-auto sm:text-xl md:text-2xl">
+          Área de trabalho
+        </CardTitle>
+      </CardHeader>
+      <CardContent
+        className={`p-0 w-11/12 h-4/5 flex flex-col items-center justify-center`}
+      >
+        {notaEdicao.length === 0 ? (
+          <div
+            className="
                         flex 
                         flex-col 
                         items-center 
                         text-gray-700
                         hover:cursor-pointer 
                         font-semibold
-                    '
-                    onClick={() => dispatch(editaNota({titulo:'Título da nota', conteudo: 'Conteúdo da nota'}))}
-                >
-                    <div className='text-4xl'>
-                        <IoMdAddCircleOutline/>
-                    </div>
-                    <h2 className='text-xl'>Adicione uma nota</h2>
-                </div> :
-                <form 
-                    onSubmit={handleSubmit(onSubmit)} 
-                    className={`
+                    "
+            onClick={() => {
+              dispatch(
+                editaNota({
+                  titulo: "Título da nota",
+                  conteudo: "Contéudo da nota",
+                  cor: "#121212",
+                })
+              );
+            }}
+          >
+            <div className="text-4xl">
+              <IoMdAddCircleOutline />
+            </div>
+            <h2 className="sm:text-lg md:text-2xl">Adicione uma nota</h2>
+          </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={`
                         flex 
                         flex-col 
                         items-left 
                         gap-4 
-                        my-auto
-                        h-4/5
+                        mb-4
                         w-full
+                        h-full
+
+                        rounded-xl
+                        p-4
                     `}
-                >
-                <Input 
-                    {...register('titulo')} 
-                    defaultValue={notaEdicao[0].titulo} 
-                    className={`
+          >
+            <Input
+              {...register("titulo")}
+              defaultValue={notaEdicao[0].titulo}
+              className={`
                         border-none 
                         focus:border-1
                         rounded-xl
@@ -88,21 +101,28 @@ export default function ContainerEdicao() {
                         font-bold
                         text-lg
                     `}
-                />
-                <Textarea 
-                    {...register('conteudo')} 
-                    defaultValue={notaEdicao[0].conteudo} 
-                    className={`
+            />
+            <Textarea
+              {...register("conteudo")}
+              defaultValue={notaEdicao[0].conteudo}
+              className={`
                         border-none 
                         focus:border-1
                         rounded-xl
                         h-3/4
                         bg-transparent
                     `}
-                />
-                <Botao 
-                    type='submit' 
-                    className={`
+            />
+            <Input
+              type="color"
+              {...register("cor")}
+              defaultValue={notaEdicao[0].cor}
+              className="h-12 w-1/2 mx-auto bg-transparent"
+            />
+            <div className="flex w-full justify-evenly">
+              <Botao
+                type="submit"
+                className={`
                         w-1/2
                         self-center
                         rounded-xl
@@ -115,14 +135,23 @@ export default function ContainerEdicao() {
                         shadow-md
                         shadow-black
                     `}
-                >
-                    Salvar
-                </Botao>
-            </form>
-
-            }    
-
-        </CardContent>
+              >
+                Salvar
+              </Botao>
+              <Botao
+                className="w-1/2 bg-transparent text-orange-500 hover:underline hover:bg-transparent"
+                type="button"
+                onClick={() => {
+                  reset();
+                  dispatch(removeEdicaoNota());
+                }}
+              >
+                Cancelar
+              </Botao>
+            </div>
+          </form>
+        )}
+      </CardContent>
     </Card>
-  )
+  );
 }

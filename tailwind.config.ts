@@ -30,7 +30,9 @@ module.exports = {
                 // => @media (min-width: 1536px) { ... }
             },
             gridTemplateColumns: {
-                '45-55': '45% 55%'
+                '55-45': '55% 45%',
+                '45-55': '45% 55%',
+                '85-15': '85% 15%'
             },
             keyFrames: {
                 'show-up': {
@@ -39,10 +41,12 @@ module.exports = {
                 }
             },
             boxShadow: {
-                inner: 'inset 2px 2px 4px 0 rgb(0 0 0 / 0.05), inset -2px -2px 4px 0 rgb(0 0 0 / 0.05)'
+                inner: 'inset 2px 2px 4px 0 rgb(0 0 0 / 0.05), inset -2px -2px 4px 0 rgb(0 0 0 / 0.05)',
+                outer: '4px 4px 8px 0 rgb(0 0 0 / 1)'
             },
             colors: {
                 'gray-card': '#121212',
+                'gray-card-lighter': '#181818',
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",

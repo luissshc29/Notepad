@@ -8,12 +8,10 @@ const notaEdicaoSlice = createSlice({
     initialState,
     reducers: {
         editaNota: (state, {payload}) => {
-            return [
-                payload
-            ]
+            state[0] = payload
         },
         removeEdicaoNota: (state) => {
-            return []
+            state.pop()
         }
     }
 })
