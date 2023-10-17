@@ -43,7 +43,7 @@ export default function Nota({
       }`}
     >
       <AccordionTrigger className="flex justify-between mr-auto">
-        <h1 className="sm:text-sm md:text-md">
+        <h1 className="sm:text-sm md:text-[16px] font-bold">
           {nota.titulo.length > 20
             ? nota.titulo.slice(0, 20) + " ..."
             : nota.titulo}
@@ -59,7 +59,7 @@ export default function Nota({
       </AccordionTrigger>
       <AccordionContent className="row-start-2">
         <div className="flex justify-between">
-          <p className="w-4/5 sm:text-xs md:text-md">
+          <p className="w-4/5 sm:text-xs md:text-[14px]">
             {nota.conteudo.length > 30
               ? nota.conteudo.slice(0, 30) + " ..."
               : nota.conteudo}

@@ -57,7 +57,7 @@ export default function ContainerEdicao() {
                         flex 
                         flex-col 
                         items-center 
-                        text-gray-700
+                        text-zinc-700
                         hover:cursor-pointer 
                         font-semibold
                     "
@@ -102,7 +102,8 @@ export default function ContainerEdicao() {
                         bg-transparent
                         font-bold
                         text-lg
-                        placeholder:text-white
+                        placeholder:text-zinc-700
+                        shadow-inner
                     `}
             />
             <Textarea
@@ -115,7 +116,8 @@ export default function ContainerEdicao() {
                         rounded-xl
                         h-3/4
                         bg-transparent
-                        placeholder:text-white
+                        placeholder:text-zinc-700
+                        shadow-inner
                     `}
             />
             <Input

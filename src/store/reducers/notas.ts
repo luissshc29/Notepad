@@ -11,7 +11,7 @@ const initialState: NotaType[] = [{
     id: 1,
     titulo: 'Seja bem-vindo(a)!',
     conteudo: 'Comece adicionando uma nota!',
-    cor: '#121212' 
+    cor: '#00ff26' 
 }]
 
 const notasSelecionadas: number[] = []
