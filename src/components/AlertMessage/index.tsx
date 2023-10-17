@@ -29,7 +29,7 @@ export default function AlertMessage({
   return (
     <AlertDialog>
       <AlertDialogTrigger>{children}</AlertDialogTrigger>
-      <AlertDialogContent className="font-sans">
+      <AlertDialogContent className="font-sans w-[90%]">
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>

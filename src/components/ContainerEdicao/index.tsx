@@ -38,7 +38,9 @@ export default function ContainerEdicao() {
             shadow-inner
             shadow-black
             font-sans
-            h-[60vh]
+            sm:h-[60vh]
+            lg:h-[60vh]
+            md:h-screen
         `}
     >
       <CardHeader className="w-full text-left h-1/5 p-6">
@@ -62,8 +64,8 @@ export default function ContainerEdicao() {
             onClick={() => {
               dispatch(
                 editaNota({
-                  titulo: "Título da nota",
-                  conteudo: "Contéudo da nota",
+                  titulo: "",
+                  conteudo: "",
                   cor: "#121212",
                 })
               );
@@ -85,14 +87,14 @@ export default function ContainerEdicao() {
                         mb-4
                         w-full
                         h-full
-
                         rounded-xl
                         p-4
                     `}
           >
             <Input
-              {...register("titulo")}
+              {...register("titulo", { required: true })}
               defaultValue={notaEdicao[0].titulo}
+              placeholder="Título da nota"
               className={`
                         border-none 
                         focus:border-1
@@ -100,24 +102,27 @@ export default function ContainerEdicao() {
                         bg-transparent
                         font-bold
                         text-lg
+                        placeholder:text-white
                     `}
             />
             <Textarea
-              {...register("conteudo")}
+              {...register("conteudo", { required: true })}
               defaultValue={notaEdicao[0].conteudo}
+              placeholder="Conteúdo da nota"
               className={`
                         border-none 
                         focus:border-1
                         rounded-xl
                         h-3/4
                         bg-transparent
+                        placeholder:text-white
                     `}
             />
             <Input
               type="color"
               {...register("cor")}
               defaultValue={notaEdicao[0].cor}
-              className="h-12 w-1/2 mx-auto bg-transparent"
+              className="h-12 w-1/2 mx-auto bg-gray-card-lighter"
             />
             <div className="flex w-full justify-evenly">
               <Botao

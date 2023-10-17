@@ -62,7 +62,9 @@ export default function ContainerNotas() {
                 });
               }}
             >
-              <h2 className="font-bold hover:cursor-pointer">Excluir</h2>
+              {notasSelecionadas.length > 0 && (
+                <h2 className="font-bold hover:cursor-pointer">Excluir</h2>
+              )}
             </AlertMessage>
             <h2
               className="font-bold hover:cursor-pointer"
