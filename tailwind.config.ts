@@ -95,11 +95,20 @@ module.exports = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: 0 },
                 },
+                "show-up": {
+                    from: {opacity: '0'},
+                    to: { opacity: '1' }
+                },
+                "grow": {
+                    from: {scale: '0'},
+                    to: { scale: '1' }
+                },
             },
             animation: {
                 "accordion-down": "accordion-down .3s ease-out",
                 "accordion-up": "accordion-up .3s ease-out",
-                'show-up': 'show-up .3s ease-in-out '
+                'show-up': 'show-up .3s ease-in-out',
+                'grow': 'grow .3s ease-in-out',
             },
             fontFamily: {
                 banner: 'var(--fonte-banner)'
