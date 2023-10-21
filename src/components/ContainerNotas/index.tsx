@@ -9,18 +9,18 @@ import { cancelaSelecoes } from "store/reducers/notasSelecionadas";
 import { useToast } from "components/ui/use-toast";
 
 export default function ContainerNotas() {
-  const { notas } = useSelector((state: any) => state);
-  const { notasSelecionadas } = useSelector((state: any) => state);
+    const { notas } = useSelector((state: any) => state);
+    const { notasSelecionadas } = useSelector((state: any) => state);
 
-  const { toast } = useToast();
+    const { toast } = useToast();
 
-  const [modoDeletar, setModoDeletar] = useState<boolean>(false);
+    const [modoDeletar, setModoDeletar] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  return (
-    <Card
-      className={`
+    return (
+        <Card
+            className={`
             text-white 
             w-full 
             h-[60vh]
@@ -33,58 +33,67 @@ export default function ContainerNotas() {
             shadow-black
             font-sans
         `}
-    >
-      <CardHeader className="flex w-full flex-row p-6 justify-between">
-        <CardTitle className="sm:text-xl md:text-2xl">Minhas notas</CardTitle>
-        {!modoDeletar && notas.length > 0 ? (
-          <h2
-            className="font-bold hover:cursor-pointer md:text-md sm:text-sm"
-            onClick={() => setModoDeletar(true)}
-          >
-            Selecionar
-          </h2>
-        ) : (
-          ""
-        )}
-        {modoDeletar && (
-          <div className="flex sm:gap-2 md:gap-4 ml-auto items-center md:text-md sm:text-sm">
-            <AlertMessage
-              title="Tem certeza que quer excluir a(s) nota(s)?"
-              description="Essa ação não poderá ser desfeita!"
-              actionText="Confirmar"
-              cancelText="Cancelar"
-              onClick={() => {
-                dispatch(deletaNota(notasSelecionadas));
-                setModoDeletar(false);
-                toast({
-                  title: "Feito!",
-                  description: "Nota(s) excluída(s) com sucesso!",
-                });
-              }}
-            >
-              {notasSelecionadas.length > 0 && (
-                <h2 className="font-bold hover:cursor-pointer">Excluir</h2>
-              )}
-            </AlertMessage>
-            <h2
-              className="font-bold hover:cursor-pointer"
-              onClick={() => {
-                dispatch(cancelaSelecoes());
-                setModoDeletar(false);
-              }}
-            >
-              Cancelar
-            </h2>
-          </div>
-        )}
-      </CardHeader>
-      <CardContent className="w-full h-4/5 overflow-y-scroll">
-        <Accordion type="multiple">
-          {notas.map((nota: NotaType) => (
-            <Nota key={nota.id} nota={nota} modoDeletar={modoDeletar} />
-          ))}
-        </Accordion>
-      </CardContent>
-    </Card>
-  );
+        >
+            <CardHeader className="flex w-full flex-row p-6 justify-between">
+                <CardTitle className="sm:text-xl md:text-2xl">
+                    Minhas notas
+                </CardTitle>
+                {!modoDeletar && notas.length > 0 ? (
+                    <h2
+                        className="font-bold hover:cursor-pointer md:text-md sm:text-sm animate-show-up duration-200"
+                        onClick={() => setModoDeletar(true)}
+                    >
+                        Selecionar
+                    </h2>
+                ) : (
+                    ""
+                )}
+                {modoDeletar && (
+                    <div className="flex sm:gap-2 md:gap-4 ml-auto items-center md:text-md sm:text-sm">
+                        <AlertMessage
+                            title="Tem certeza que quer excluir a(s) nota(s)?"
+                            description="Essa ação não poderá ser desfeita!"
+                            actionText="Confirmar"
+                            cancelText="Cancelar"
+                            onClick={() => {
+                                dispatch(deletaNota(notasSelecionadas));
+                                setModoDeletar(false);
+                                toast({
+                                    title: "Feito!",
+                                    description:
+                                        "Nota(s) excluída(s) com sucesso!",
+                                });
+                            }}
+                        >
+                            {notasSelecionadas.length > 0 && (
+                                <h2 className="font-bold hover:cursor-pointer animate-show-up duration-200">
+                                    Excluir
+                                </h2>
+                            )}
+                        </AlertMessage>
+                        <h2
+                            className="font-bold hover:cursor-pointer animate-show-up duration-200"
+                            onClick={() => {
+                                dispatch(cancelaSelecoes());
+                                setModoDeletar(false);
+                            }}
+                        >
+                            Cancelar
+                        </h2>
+                    </div>
+                )}
+            </CardHeader>
+            <CardContent className="w-full h-4/5 overflow-y-scroll">
+                <Accordion type="multiple">
+                    {notas.map((nota: NotaType) => (
+                        <Nota
+                            key={nota.id}
+                            nota={nota}
+                            modoDeletar={modoDeletar}
+                        />
+                    ))}
+                </Accordion>
+            </CardContent>
+        </Card>
+    );
 }
