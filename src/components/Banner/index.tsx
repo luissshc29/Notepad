@@ -6,6 +6,7 @@ export default function Banner() {
             <img
                 src="/images/notepad.png"
                 className="sm:w-2/3 md:w-2/5 justify-self-end"
+                alt="Logo notepad"
             />
             <div className="md:ml-4 sm:ml-2 flex flex-col gap-1">
                 <h1 className="md:text-4xl sm:text-2xl font-banner">Notepad</h1>
