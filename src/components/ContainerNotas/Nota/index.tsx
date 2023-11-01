@@ -91,7 +91,7 @@ export default function Nota({
             </AccordionContent>
             {modoDeletar && (
                 <Switch
-                    className="justify-self-end scale-75 animate-grow duration-200"
+                    className="justify-self-end scale-75 animate-show-up duration-200"
                     onCheckedChange={(e) => marcaNota(e)}
                 />
             )}
