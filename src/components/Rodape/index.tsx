@@ -8,7 +8,7 @@ import { FiExternalLink } from "react-icons/fi";
 
 export default function Rodape() {
   return (
-    <footer className="flex justify-center items-center gap-2 lg:col-span-2 mt-auto mb-0 py-6 w-full font-sans text-base text-neutral-500">
+    <footer className="flex justify-center items-center gap-2 lg:col-span-2 mt-auto mb-0 py-6 w-full font-sans text-sm md:text-base text-neutral-500">
       <div className="flex items-center gap-[3px] h-full">
         Feito por{" "}
         <a
